@@ -4,9 +4,16 @@ import styles from './HookFormComponent.module.css';
 const HookForm = (props) => {
     const [userName, setUserName] = useState("");
     const [userNameError, setUserNameError] = useState("");
-    const [userEmail, setUserEmal] = useState("");
+
+    const [userEmail, setUserEmail] = useState("");
+    const [userEmailError, setUserEmailError] = useState("");
+
     const [userPassword, setUserPassword] = useState("");
+    const [userPasswordError, setUserPasswordError] = useState("");
+
     const [userPasswordConfirm, setUserPasswordConfirm] = useState("");
+    const [userPasswordConfirmError, setUserConfirmPasswordError] = useState("");
+
     const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
 
     const addUser = (e) => {
@@ -35,6 +42,39 @@ const HookForm = (props) => {
         }
     }
 
+    const handleEmail = (e) => {
+        setUserEmail(e.target.value)
+        if(e.target.value.length === 0) {
+            setUserEmailError("");
+        } else if (e.target.value.length < 2) {
+            setUserEmailError("Title is required!");
+        } else {
+            setUserEmailError("");
+        }
+    }
+
+    const handlePassword = (e) => {
+        setUserPassword(e.target.value)
+        if(e.target.value.length === 0) {
+            setUserPasswordError("");
+        } else if (e.target.value.length < 8) {
+            setUserPasswordError("At least 8 symbols");
+        } else {
+            setUserPasswordError("");
+        }
+    }
+
+    const handleConfirmPassword = (e) => {
+        setUserPasswordConfirm(e.target.value)
+        if(e.target.value.length === 0) {
+            setUserConfirmPasswordError("Confirm password is required");
+        } else if (e.target.value != userPassword) {
+            setUserConfirmPasswordError("Passwords does not match");
+        } else {
+            setUserConfirmPasswordError("");
+        }
+    }
+
     return (
         <div className={styles.formComponent}>
             <h3>{ formMessage() }</h3>
@@ -42,31 +82,46 @@ const HookForm = (props) => {
                 <div>
                     {
                     userNameError ?
-                        <div style={{color:'red'}}>{ userNameError }</div> :
+                        <div style={{ color:'red' }}>{ userNameError }</div> :
                         ''
                     }
                     <label>Username: </label> 
-                    <input type="text" onChange={ handleName } value={userName}/>
+                    <input type="text" onChange={ handleName } value={ userName }/>
                 </div>
                 <div>
+                {
+                    userEmailError ?
+                        <div style={{ color:'red' }}>{ userEmailError }</div> :
+                        ''
+                    }
                     <label>Email Address: </label> 
-                    <input type="text" onChange={ (e) => setUserEmal(e.target.value) } value={userEmail}/>
+                    <input type="text" onChange={ handleEmail } value={ userEmail }/>
                 </div>
                 <div>
+                {
+                    userPasswordError ?
+                        <div style={{ color:'red' }}>{ userPasswordError }</div> :
+                        ''
+                    }
                     <label>Password: </label>
-                    <input type="password" onChange={ (e) => setUserPassword(e.target.value) } value={userPassword}/>
+                    <input type="password" onChange={ handlePassword } value={ userPassword }/>
                 </div>
                 <div>
+                {
+                    userPasswordConfirmError ?
+                        <div style={{ color:'red' }}>{ userPasswordConfirmError }</div> :
+                        ''
+                    }
                     <label>Password Confirm: </label>
-                    <input type="password" onChange={ (e) => setUserPasswordConfirm(e.target.value) } value={userPasswordConfirm}/>
+                    <input type="password" onChange={ handleConfirmPassword } value={ userPasswordConfirm }/>
                 </div>
                 <input type="submit" value="Create User" />
             </form>
             <div>
                 <ul>
-                    <li>User Name: {userName}</li>
-                    <li>User Email: {userEmail}</li>
-                    <li>User Password: {userPassword}</li>
+                    <li>User Name: { userName }</li>
+                    <li>User Email: { userEmail }</li>
+                    <li>User Password: { userPassword }</li>
                 </ul>
             </div>
 
