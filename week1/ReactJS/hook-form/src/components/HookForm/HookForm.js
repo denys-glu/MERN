@@ -28,11 +28,13 @@ const HookForm = (props) => {
         setUserName(e.target.value)
         if(e.target.value.length === 0) {
             setUserNameError("");
-        }
-        if (e.target.value.length < 2) {
+        } else if (e.target.value.length < 2) {
             setUserNameError("Title is required!");
+        } else {
+            setUserNameError("");
         }
     }
+
     return (
         <div className={styles.formComponent}>
             <h3>{ formMessage() }</h3>
