@@ -1,7 +1,4 @@
 import React from "react";
-import styles from "./BoxComponent.module.css";
-
-
 
 const Box = (props) => {
     const boxStyle = {
