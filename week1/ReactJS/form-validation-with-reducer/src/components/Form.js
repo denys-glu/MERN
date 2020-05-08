@@ -27,6 +27,15 @@ const Form = (props) => {
  
     function handleChange(e) {
         const { name, value } = e.target;
+        if(value.lenght < 3) {
+            console.log(state[name].error)
+            this.setState({
+                [state[name].error] : `${name} should be at least 3 characters long`
+            })
+        }
+        if(name === "firstName") {
+            // if()
+        }
         dispatch({
             type: name,
             payload: value
