@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
 import Box from './components/Box/Box';
-import { cleanup } from '@testing-library/react';
-
 
 function App() {
   const [color, setColor] = useState("");
@@ -25,7 +23,6 @@ function App() {
     setHeight("")
     setWidth("")
   }
-
 
   return (
     <div className="App">
