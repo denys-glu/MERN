@@ -9,11 +9,11 @@ const Form = () => {
 
     const firstNameHandler = val => {
         setFirstName(val)
-        context.setMyObj({name: firstName})
     }
-
+    
     const submitHandler = (e) => {
         e.preventDefault()
+        context.setMyObj({name: firstName})
         console.log(e)
     }
 
@@ -22,6 +22,7 @@ const Form = () => {
         <form onSubmit={ submitHandler }>
             <label htmlFor="firstName">First Name: </label>
             <input id="firstName" type="text" onChange={ e => firstNameHandler(e.target.value) } value={ firstName }/>
+            <button type="submit">Change</button>
         </form>
         </>
     )
