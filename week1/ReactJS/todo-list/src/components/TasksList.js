@@ -14,6 +14,7 @@ const TasksList = () => {
     const removeFromTasks = task => {
         const newTasks = tasks.filter(t => t.description !== task.description)
         addTask(newTasks)
+        // addTask(tasks.filter(t => t.description !== task.description))
         localStorage.setItem("tasks", JSON.stringify(newTasks));
     }
     
