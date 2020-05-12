@@ -5,9 +5,11 @@ const Pokemons = props => {
     const [pokemons, setPokemons] = useState(null);
 
     useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon')
-            .then(res => res.json())
-            .then(res => setPokemons(res.results))
+        axios.get('https://pokeapi.co/api/v2/pokemon')
+             .then(res => {
+             console.log("res", res)
+                    setPokemons(res.data.results)
+        })
     }, [])
 
     return (
