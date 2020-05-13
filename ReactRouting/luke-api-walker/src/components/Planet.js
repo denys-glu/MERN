@@ -3,6 +3,7 @@ import MyContext from './MyContext';
 
 const Planet = () => {
     const context = useContext(MyContext);
+    console.log("Planet -> context", context.myObj)
     const {name, climate, gravity, population} = context.myObj;
     return (
         <div className="row">

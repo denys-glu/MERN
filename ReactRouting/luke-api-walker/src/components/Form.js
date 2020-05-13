@@ -13,15 +13,32 @@ const Form = props => {
         e.preventDefault();
 
         axios.get(`https://swapi.dev/api/${searchFor}/${idValue}/`)
-        .then(response=>{
-            context.setMyObj(response.data)
-            console.log("formHandler -> response.data", response.data)
-            navigate(`/${searchFor}/${idValue}`)
-        }).catch(err => {
-            console.log("formHandler -> err", err)
-            navigate(`/disaster`)
-
-        })
+            .then(response => {
+                context.setMyObj(response.data)
+                // console.log("formHandler -> response.data", response.data)
+                if (searchFor === dropDown[0]) {
+                    axios.get(response.data.homeworld)
+                         .then(res => {
+                            console.log("formHandler -> res", res)
+                             let temp = {...context.myObj}
+                             console.log("formHandler -> temp", temp)
+                             const parts = response.data.homeworld.split('/');
+                             context.setMyObj({
+                                 homeworldName: res.data.name,
+                                 homeworldId: parts[parts.length-2],
+                                 homeworldData: res.data,
+                                ...response.data
+                                });
+                             navigate(`/${searchFor}/${idValue}`)
+                         })
+                } else {
+                    console.log("PLANETS")
+                    navigate(`/${searchFor}/${idValue}`)
+                }
+            }).catch(err => {
+                console.log("formHandler -> err", err)
+                navigate(`/disaster`)
+            })
 
     }
 
@@ -35,7 +52,7 @@ const Form = props => {
 
     return (
         <>
-            <div className="row mt-5">
+            <div className="row mt-5 mb-5">
                 <div className="col-sm-6">
                     <form onSubmit={ formHandler } className="form-inline">
                         <div className="form-group">
