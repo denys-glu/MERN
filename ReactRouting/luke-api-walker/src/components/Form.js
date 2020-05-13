@@ -1,28 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { navigate } from '@reach/router'
+import axios from 'axios';
+import MyContext from './MyContext';
 
 const Form = props => {
+    const context = useContext(MyContext)
     const dropDown = ["people", "planets"];
     const [searchFor, setSeatchFor] = useState(dropDown[0]);
     const [idValue, setIdValue] = useState("");
 
     const formHandler = (e) => {
         e.preventDefault();
-        if(searchFor === dropDown[0]) {
-            navigate(`/people/${idValue}`)
-        } else {
-            navigate(`/planet/${idValue}`)
-        }
+
+        axios.get(`https://swapi.dev/api/${searchFor}/${idValue}/`)
+        .then(response=>{
+            context.setMyObj(response.data)
+            console.log("formHandler -> response.data", response.data)
+            navigate(`/${searchFor}/${idValue}`)
+        }).catch(err => {
+            console.log("formHandler -> err", err)
+        })
+
     }
 
     const selectHandler = val => {
         setSeatchFor(val)
-        console.log("val", val)
     }
 
     const idHandler = val => {
         setIdValue(val)
-        console.log("val", val)
     }
 
     return (

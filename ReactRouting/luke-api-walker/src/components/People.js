@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
+import MyContext from './MyContext';
 
-const People = ({id}) => {
-
-    useEffect(()=>{
-        axios.get(`https://swapi.dev/api/people/${id}/`)
-        .then(response=>{
-            console.log(response.data);
-        }).catch(err => {
-            console.log("formHandler -> err", err)
-        })
-    }, []); 
+const People = () => {
+    const context = useContext(MyContext);
+    const {name, height, birth_year, mass } = context.myObj;
 
     return (
-        <>
-            <h1>People</h1>
-        </>
+        <div className="row">
+            <div className="col-sm-5">
+                <h1>{name}</h1>
+                <ul>
+                    <li>Height: {height}</li>
+                    <li>Birth Year: {birth_year}</li>
+                    <li>Mass: {mass}</li>
+                </ul>
+            </div>
+        </div>
     )
 }
 
