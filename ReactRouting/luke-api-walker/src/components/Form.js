@@ -5,7 +5,7 @@ import MyContext from './MyContext';
 
 const Form = props => {
     const context = useContext(MyContext)
-    const dropDown = ["people", "planets"];
+    const dropDown = ["people", "planets", "starships"];
     const [searchFor, setSeatchFor] = useState(dropDown[0]);
     const [idValue, setIdValue] = useState("");
 
@@ -15,28 +15,26 @@ const Form = props => {
         axios.get(`https://swapi.dev/api/${searchFor}/${idValue}/`)
             .then(response => {
                 context.setMyObj(response.data)
-                // console.log("formHandler -> response.data", response.data)
-                if (searchFor === dropDown[0]) {
+
+                if (searchFor === dropDown[0]) {//do extra leg work for people request
                     axios.get(response.data.homeworld)
                          .then(res => {
-                            console.log("formHandler -> res", res)
-                             let temp = {...context.myObj}
-                             console.log("formHandler -> temp", temp)
-                             const parts = response.data.homeworld.split('/');
+                             const parts = response.data.homeworld.split('/');//splitting by "/" homewrold URL into array 
                              context.setMyObj({
+                                 fromPeople: true,
                                  homeworldName: res.data.name,
-                                 homeworldId: parts[parts.length-2],
+                                 homeworldId: response.data.homeworld.split('/')[parts.length-2],//taking id from parts array,
                                  homeworldData: res.data,
                                 ...response.data
                                 });
                              navigate(`/${searchFor}/${idValue}`)
                          })
                 } else {
-                    console.log("PLANETS")
                     navigate(`/${searchFor}/${idValue}`)
                 }
+
+                setIdValue("");//reset the ID input value
             }).catch(err => {
-                console.log("formHandler -> err", err)
                 navigate(`/disaster`)
             })
 
@@ -53,7 +51,7 @@ const Form = props => {
     return (
         <>
             <div className="row mt-5 mb-5">
-                <div className="col-sm-6">
+                <div className="col-sm">
                     <form onSubmit={ formHandler } className="form-inline">
                         <div className="form-group">
                             <label htmlFor="dropDown">Search For: </label>

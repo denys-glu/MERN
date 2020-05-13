@@ -4,11 +4,9 @@ import MyContext from './MyContext';
 
 const People = () => {
     const context = useContext(MyContext);
-    console.log("People -> context", context.myObj)
-    const {name, height, birth_year, mass, homeworldId, homeworldName, homeworldData } = context.myObj;
+    const {name, height, birth_year, mass, homeworldId, homeworldName } = context.myObj;
     
     const handlePlanet = () => {
-        context.setMyObj(homeworldData);
         navigate(`/planets/${homeworldId}`);
     }
     return (
@@ -16,10 +14,10 @@ const People = () => {
             <div className="col-sm-5">
                 <h1>{name}</h1>
                 <ul>
-                    <li>Height: {height}</li>
-                    <li>Birth Year: {birth_year}</li>
-                    <li>Mass: {mass}</li>
-                    <li>Homeworld: <Link onClick={ handlePlanet } to={"/planets/" + homeworldId}>{ homeworldName }</Link> </li>
+                    <li><strong>Height</strong>: {height}</li>
+                    <li><strong>Birth Year</strong>: {birth_year}</li>
+                    <li><strong>Mass</strong>: {mass}</li>
+                    <li><strong>Homeworld</strong>: <Link onClick={ handlePlanet } to={"/planets/" + homeworldId}>{ homeworldName }</Link> </li>
                 </ul>
             </div>
         </div>
@@ -27,7 +25,7 @@ const People = () => {
 }
 
 export default People;
-
+// JSON example
 // birth_year: "31.5BBY"
 // created: "2014-12-15T12:49:32.457000Z"
 // edited: "2014-12-20T21:17:50.349000Z"

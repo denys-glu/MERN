@@ -1,18 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import MyContext from './MyContext';
 
 const Planet = () => {
     const context = useContext(MyContext);
-    console.log("Planet -> context", context.myObj)
-    const {name, climate, gravity, population} = context.myObj;
+    let {name, climate, gravity, population} = context.myObj;
+    
+    useEffect(() => {
+        if(context.myObj.fromPeople) {
+            context.setMyObj(context.myObj.homeworldData)
+        } 
+    }, []);
+    
     return (
         <div className="row">
             <div className="col-sm-5">
                 <h1>{name}</h1>
                 <ul>
-                    <li>Climate: {climate}</li>
-                    <li>Gravity: {gravity}</li>
-                    <li>Population: {population}</li>
+                    <li><strong>Climate</strong>: {climate}</li>
+                    <li><strong>Gravity</strong>: {gravity}</li>
+                    <li><strong>Population</strong>: {population}</li>
                 </ul>
             </div>
         </div>
@@ -20,7 +26,7 @@ const Planet = () => {
 }
 
 export default Planet;
-
+// JSON example
 // climate: "temperate, tropical"
 // created: "2014-12-10T11:37:19.144000Z"
 // diameter: "10200"

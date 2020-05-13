@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Router } from '@reach/router';
 import './App.css';
+import MyContext from './components/MyContext';
 import Form from './components/Form';
 import People from './components/People';
 import Planet from './components/Planet';
-import MyContext from './components/MyContext';
+import Starships from './components/Starships';
 import Error from './components/Error';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                 <Router>
                     <People path="/people/:id" />
                     <Planet path="/planets/:id" />
+                    <Starships path="/starships/:id" />
                     <Error path="/disaster" />
                 </Router>
             </MyContext.Provider>
