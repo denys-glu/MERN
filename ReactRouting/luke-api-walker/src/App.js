@@ -5,6 +5,7 @@ import Form from './components/Form';
 import People from './components/People';
 import Planet from './components/Planet';
 import MyContext from './components/MyContext';
+import Error from './components/Error';
 
 function App() {
     const [myObj, setMyObj] = useState({});
@@ -16,6 +17,7 @@ function App() {
                 <Router>
                     <People path="/people/:id" />
                     <Planet path="/planets/:id" />
+                    <Error path="/disaster" />
                 </Router>
             </MyContext.Provider>
         </div>

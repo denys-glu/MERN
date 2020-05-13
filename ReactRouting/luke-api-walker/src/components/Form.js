@@ -19,6 +19,8 @@ const Form = props => {
             navigate(`/${searchFor}/${idValue}`)
         }).catch(err => {
             console.log("formHandler -> err", err)
+            navigate(`/disaster`)
+
         })
 
     }
