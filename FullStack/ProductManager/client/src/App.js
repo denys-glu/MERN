@@ -1,12 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Router } from '@reach/router';
 import './App.css';
 import ProductForm from './components/ProductForm';
+import ProductDetail from './components/ProductDetail';
 
 function App() {
   return (
     <div className="App container">
-        <ProductForm />
+        <Router>
+            <ProductForm path="/products/add-product" />
+            <ProductDetail path="/products/detail/:id" />
+        </Router>
     </div>
   );
 }
