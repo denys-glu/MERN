@@ -11,27 +11,33 @@ const ProductForm = props => {
 
     const addProduct = e => {
         e.preventDefault();
-        axios.post('http://localhost:8001/api/products/new',{
+        axios.post('http://localhost:8001/api/products/new', {
             title,
             price,
             description
-            })
+        })
             .then(res => {
                 console.log("res", res)
+                cleanUpForm();
+                getAllProducts();
             })
             .catch(error => {
                 console.log("error", error)
             })
-        cleanUpForm()
     }
 
     useEffect(() => {
+        getAllProducts();
+    }, [])
+
+    const getAllProducts = () => {
         axios.get('http://localhost:8001/api/products/')
             .then(res => {
                 setProducts(res.data.allProducts)
                 setReceived(true)
             })
-    }, [])
+    }
+
 
     const titleHandler = val => {
         setTitle(val)
@@ -50,28 +56,32 @@ const ProductForm = props => {
     }
     return (
         <>
-        <div className="row mt-5">
-            <div className="col-sm-6">
-                <form onSubmit={ addProduct }>
-                    <div className="form-group">
-                        <label htmlFor="">Title: </label>
-                        <input type="text" className="form-control" value={ title } onChange={ e => titleHandler(e.target.value) }/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="">Price: </label>
-                        <input type="number" className="form-control" value={ price } onChange={ e => priceHandler(e.target.value) }/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="">Description: </label>
-                        <input type="text" className="form-control" value={description } onChange={ e => descriptionHandler(e.target.value) }/>
-                    </div>
-                    <button className="btn btn-primary" type="submit">Add Product</button>
-                </form>
+            <div className="row mt-5">
+                <div className="col-sm-6">
+                    <form onSubmit={addProduct}>
+                        <div className="form-group">
+                            <label htmlFor="">Title: </label>
+                            <input type="text" className="form-control" value={title} onChange={e => titleHandler(e.target.value)} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="">Price: </label>
+                            <input type="number" className="form-control" value={price} onChange={e => priceHandler(e.target.value)} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="">Description: </label>
+                            <input type="text" className="form-control" value={description} onChange={e => descriptionHandler(e.target.value)} />
+                        </div>
+                        <button className="btn btn-primary" type="submit">Add Product</button>
+                    </form>
+                </div>
             </div>
-        </div>
-        <hr/>
+            <hr />
 
-        {received && <ProductsAll products={ products } /> }
+            {
+            received ? 
+            <ProductsAll products={products} updateProducts={ getAllProducts } />:
+                <div className="loader">Loading...</div>
+            }
         </>
     )
 }
