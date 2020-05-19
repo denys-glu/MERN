@@ -24,6 +24,7 @@ const Form = props => {
     }
 
     function submitHandler(e) {
+        e.preventDefault();
         superSubmitHandler(e, { title, price, description }, cleanUpForm)
     }
 

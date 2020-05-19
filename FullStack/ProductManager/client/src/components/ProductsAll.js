@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import axios from 'axios';
+import DeleteButton from './DeleteButton';
 
 const ProductsAll = ({ products, updateProducts }) => {
 
@@ -37,9 +38,10 @@ const ProductsAll = ({ products, updateProducts }) => {
                                 </Link>
                             </li>
                             <li>
-                                <button onClick={e => deleteProduct(product) } className="btn btn-danger">
+                                <DeleteButton deleteHandler={deleteProduct} product={product} />
+                                {/* <button onClick={e => deleteProduct(product) } className="btn btn-danger">
                                     Delete this product
-                                </button>
+                                </button> */}
                             </li>
                         </ul>
                     </div>

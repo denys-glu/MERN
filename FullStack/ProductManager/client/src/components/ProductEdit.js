@@ -11,7 +11,6 @@ const ProductEdit = ({ location }) => {
     const [received, setReceived] = useState(false);
 
     const editProduct = (e, product) => {
-        e.preventDefault();
         axios.put(`http://localhost:8001/api/products/update/${id}`, {
             title: product.title,
             price: product.price,

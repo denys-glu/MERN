@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { navigate } from '@reach/router';
+import DeleteButton from './DeleteButton';
 
 const ProductDetail = ({ location }) => {
     console.log("ProductDetail -> props", location.state)
@@ -39,25 +40,23 @@ const ProductDetail = ({ location }) => {
             <div className="row mt-5">
                 <div className="col-sm-6">
                     {
-                    received ?
-                    <ul className="list-unstyled text-left">
-                        <li>
-                            <strong>Title:</strong> {title}
-                        </li>
-                        <li>
-                            <strong>Price:</strong> ${price}
-                        </li>
-                        <li>
-                            <strong>Description:</strong> {description}
-                        </li>
-                        <li>
-                            <button onClick={e => deleteProduct()} className="btn btn-danger">
-                                Delete this product
-                            </button>
-                        </li>
-                    </ul>:
-                    <div className="loader">Loading...</div>
-                }
+                        received ?
+                            <ul className="list-unstyled text-left">
+                                <li>
+                                    <strong>Title:</strong> {title}
+                                </li>
+                                <li>
+                                    <strong>Price:</strong> ${price}
+                                </li>
+                                <li>
+                                    <strong>Description:</strong> {description}
+                                </li>
+                                <li>
+                                    <DeleteButton deleteHandler={deleteProduct} />
+                                </li>
+                            </ul> :
+                            <div className="loader">Loading...</div>
+                    }
                 </div>
             </div>
         </>

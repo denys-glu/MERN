@@ -11,7 +11,6 @@ const ProductForm = props => {
     const [products, setProducts] = useState([]);
 
     const addProduct = (e, product, callback) => {
-        e.preventDefault();
         axios.post('http://localhost:8001/api/products/new', {
             title: product.title,
             price: product.price,
@@ -43,7 +42,7 @@ const ProductForm = props => {
         <>
             <div className="row mt-5">
                 <div className="col-sm-6">
-                    <Form superSubmitHandler={addProduct} product={title, price, description} />
+                    <Form superSubmitHandler={addProduct} initTitle={title} initPrice={price} initDescription={description} />
                 </div>
             </div>
             <hr />
