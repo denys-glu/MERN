@@ -26,13 +26,13 @@ module.exports.addNewAuthor = (req, res) => {
 
     Author.create(req.body)
         .then(newAuthor => res.json({ author: newAuthor }))
-        .catch(err => res.json({ message: "Something went wrong", error: err }));
+        .catch(err => res.status(400).json({ message: "Something went wrong", error: err }));
 };
 
 module.exports.updateAuthor = (req, res) => {
     Author.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true })
         .then(updatedAuthor => res.json({ author: updatedAuthor }))
-    .catch(err => res.json({ message: "Something went wrong", error: err }));
+    .catch(err => res.status(400).json({ message: "Something went wrong", error: err }));
 };
 
 module.exports.deleteAuthor = (req, res) => {
