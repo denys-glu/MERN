@@ -15,6 +15,13 @@ const ShowAllAuthors = (props) => {
             })
     }
 
+    function deleteAuthor(id) {
+        axios.delete(`http://localhost:8001/api/authors/delete/${id}`)
+            .then(res => {
+                getAllAuthors()
+            })
+    }
+
     useEffect(() => {
         getAllAuthors()
     }, [])
@@ -38,7 +45,7 @@ const ShowAllAuthors = (props) => {
                         <tbody>
                             {received ?
                                 authors.map((author, i) => (
-                                    <Author key={i} idx={i} author={author} />
+                                    <Author key={i} idx={i} author={author} deleteHandler={deleteAuthor} />
                                 )) :
                                 <tr>
                                     <td>

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from '@reach/router';
+import DeleteButton from '../components/DeleteButton';
 
-const Author = ({ author }) => {
+const Author = ({ author, deleteHandler }) => {
 
     return (
         <>
@@ -11,7 +12,7 @@ const Author = ({ author }) => {
                 </th>
                 <td>
                     <Link to={`/edit/${author._id}`} className="btn btn-warning mr-3">Edit</Link>
-                    <button className="btn btn-danger">Delete</button>
+                    <DeleteButton deleteHandler={ deleteHandler }  author={ author }/>
                 </td>
             </tr>
         </>

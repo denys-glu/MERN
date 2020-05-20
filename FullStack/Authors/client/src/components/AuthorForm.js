@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { navigate } from '@reach/router';
 
 const AuthorForm = ({ submitHandler, fName, lName }) => {
-console.log("AuthorForm -> fName, lName", fName, lName)
 
     const [author, setAuthor] = useState({
         firstName: fName,
