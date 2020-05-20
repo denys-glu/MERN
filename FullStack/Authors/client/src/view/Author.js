@@ -6,9 +6,11 @@ const Author = ({ author }) => {
     return (
         <>
             <tr>
-                <th scope="row">{author.firstName} {author.lastName}</th>
+                <th scope="row">
+                    {author.firstName} {author.lastName}
+                </th>
                 <td>
-                    <button className="btn btn-warning mr-3">Edit</button>
+                    <Link to={`/edit/${author._id}`} className="btn btn-warning mr-3">Edit</Link>
                     <button className="btn btn-danger">Delete</button>
                 </td>
             </tr>
