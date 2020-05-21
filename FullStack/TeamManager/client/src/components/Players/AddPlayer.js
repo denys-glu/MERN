@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { navigate } from '@reach/router';
 
 function AddPlayer() {
     const [name, setName] = useState("");
@@ -14,6 +15,7 @@ function AddPlayer() {
             position
         })
         .then(res => {
+            navigate("/players/list")
             cleanForm()
         })
         .catch(err => {
