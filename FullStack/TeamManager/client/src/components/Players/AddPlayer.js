@@ -10,10 +10,14 @@ function AddPlayer() {
 
     function submitHandler(e) {
         e.preventDefault();
-        axios.post("http://localhost:8001/api/players/new", {
-            name,
-            position
-        })
+        
+        let dummy = {};
+        if(position !== "") {
+            dummy.position = position;
+        }
+        dummy.name = name;
+
+        axios.post("http://localhost:8001/api/players/new", dummy)
         .then(res => {
             navigate("/players/list")
             cleanForm()

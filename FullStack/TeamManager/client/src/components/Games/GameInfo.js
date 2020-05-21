@@ -18,7 +18,7 @@ function GameInfo(props) {
                                 <td>{player.name}</td>
                                 <td>
                                     <button className="btn">Playing</button>
-                                    <button className="btn">Not Playing</button>
+                                    <button className="btn ml-2 mr-2">Not Playing</button>
                                     <button className="btn">Undecided</button>
                                 </td>
                             </tr>

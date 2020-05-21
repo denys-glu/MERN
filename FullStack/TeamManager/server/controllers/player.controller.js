@@ -16,8 +16,8 @@ module.exports.createNewPlayer = (req, res) => {
 
 module.exports.updateExistingPlayer = (req, res) => {
     Player.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true })
-    .then(updateProduct => res.json({ product: updateProduct }))
-    .catch(err => res.json({ message: "Something went wrong", error: err }));
+        .then(updateProduct => res.json({ product: updateProduct }))
+        .catch(err => res.json({ message: "Something went wrong", error: err }));
 };
 
 module.exports.deleteAnExistingPlayer = (req, res) => {

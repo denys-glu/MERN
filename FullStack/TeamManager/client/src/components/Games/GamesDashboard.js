@@ -3,14 +3,23 @@ import GameInfo from './GameInfo';
 import axios from 'axios';
 
 function GamesDashboard() {
-    const [games, setGames] = useState([{name: "Game 1"}, {name: "Game 2"}]);
+    const [games, setGames] = useState([]);
     const [currGame, setCurrGame] = useState({});
     const [players, setPlayers] = useState([]);
     const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
-        getPlayers()
+        getGames()
     }, [])
+
+    function getGames() {
+        axios.get('http://localhost:8001/api/games')
+            .then(res => {
+                setGames(res.data.allGames)
+                getPlayers()
+            })
+            .catch(err => console.log("getGames -> err", err))
+    }
 
     function getPlayers() {
         axios.get('http://localhost:8001/api/players')
@@ -18,7 +27,10 @@ function GamesDashboard() {
                 setPlayers(res.data.allPlayers)
                 setLoaded(true)
             })
+            .catch(err => console.log("getPlayers -> err", err))
     }
+
+    
 
     return (
         <>
