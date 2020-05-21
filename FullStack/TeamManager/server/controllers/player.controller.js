@@ -15,8 +15,9 @@ module.exports.createNewPlayer = (req, res) => {
 };
 
 module.exports.updateExistingPlayer = (req, res) => {
+    console.log("module.exports.updateExistingPlayer -> req.body", req.body)
     Player.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true })
-        .then(updateProduct => res.json({ product: updateProduct }))
+        .then(player => res.json({ player }))
         .catch(err => res.json({ message: "Something went wrong", error: err }));
 };
 
