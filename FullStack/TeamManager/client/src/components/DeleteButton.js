@@ -4,7 +4,7 @@ function DeleteButton({ deleteHandler, item }) {
 
     return (
         <>
-            <button type="button" className="btn btn-primary" data-toggle="modal" data-target={`#myModal${item._id}`}>Delete Player {item.name}</button>
+            <button type="button" className="btn btn-primary" data-toggle="modal" data-target={`#myModal${item._id}`}>Delete Player</button>
 
             <div id={`myModal${item._id}`} className="modal fade bd-example-modal-sm" 
                                             tabIndex="-1" 
