@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import AttendenceButton from './AttendenceButton';
 
-function GameInfo(props) {
-    const [players] = useState(props.players);
-
+function GameInfo({ players, currGame, callBack}) {
+    const [statuses] = ["Playing", "NotPlaying", "Undecided"];
+    
     return (
         <>
             <table className="table">
@@ -20,10 +20,21 @@ function GameInfo(props) {
                                 <td>{player.name}</td>
                                 {
                                     <td>
-                                        {/* TODO: Move player to separate component */}
-                                        <AttendenceButton attendance={player.attendance}/>
-                                        <button className="btn ml-2 mr-2">Not Playing</button>
-                                        <button className="btn">Undecided</button>
+                                        <AttendenceButton 
+                                            player={player} 
+                                            value={"Playing"} 
+                                            currGame={currGame}
+                                            callBack={callBack}/>
+                                        <AttendenceButton 
+                                            player={player} 
+                                            value={"Not Playing"} 
+                                            currGame={currGame}
+                                            callBack={callBack}/>
+                                        <AttendenceButton 
+                                            player={player} 
+                                            value={"Undecided"} 
+                                            currGame={currGame}
+                                            callBack={callBack}/>
                                     </td>
                                 }
                             </tr>
