@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from '@reach/router';
 import axios from 'axios';
 import DeleteButton from '../DeleteButton';
 
@@ -25,6 +24,7 @@ function ListOfPlayers(props) {
         })
         .catch(err => console.log(err))
     }
+    
     return (
         <>
             <table className="table table-bordered">

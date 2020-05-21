@@ -37,6 +37,21 @@
   }
 }
 
+/* Player statuses styles */
+
+.Undecided {
+    background-color: orange;
+}
+
+.NotPlaying {
+    background-color: red;
+}
+
+.Playing {
+    background-color: green;
+}
+/* Player statuses styles END */
+
 /* Spinner */
 
 .loader {

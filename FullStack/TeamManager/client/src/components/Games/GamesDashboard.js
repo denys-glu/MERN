@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function GamesDashboard() {
     const [games, setGames] = useState([]);
-    const [currGame, setCurrGame] = useState({});
+    // const [currGame, setCurrGame] = useState({});
     const [players, setPlayers] = useState([]);
     const [loaded, setLoaded] = useState(false)
 
@@ -30,7 +30,7 @@ function GamesDashboard() {
             .catch(err => console.log("getPlayers -> err", err))
     }
 
-    
+
 
     return (
         <>

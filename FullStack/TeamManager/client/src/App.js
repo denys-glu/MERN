@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { Router, navigate, Redirect } from '@reach/router';
+import { Router, Redirect } from '@reach/router';
 import PlayersDashboard from './components/Players/PlayersDashboard';
 import GamesDashboard from './components/Games/GamesDashboard';
 import Navigation from './components/Navigation';

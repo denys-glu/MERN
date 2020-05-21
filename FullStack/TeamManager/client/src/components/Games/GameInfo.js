@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import AttendenceButton from './AttendenceButton';
 
 function GameInfo(props) {
     const [players] = useState(props.players);
+
     return (
         <>
             <table className="table">
@@ -16,11 +18,13 @@ function GameInfo(props) {
                         players.map((player, i) => (
                             <tr key={i}>
                                 <td>{player.name}</td>
-                                <td>
-                                    <button className="btn">Playing</button>
-                                    <button className="btn ml-2 mr-2">Not Playing</button>
-                                    <button className="btn">Undecided</button>
-                                </td>
+                                {
+                                    <td>
+                                        <AttendenceButton attendance={player.attendance}/>
+                                        <button className="btn ml-2 mr-2">Not Playing</button>
+                                        <button className="btn">Undecided</button>
+                                    </td>
+                                }
                             </tr>
                         ))
                     }
