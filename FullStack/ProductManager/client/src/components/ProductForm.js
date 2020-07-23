@@ -11,7 +11,7 @@ const ProductForm = props => {
     const [products, setProducts] = useState([]);
 
     const addProduct = (e, product, callback) => {
-        axios.post('http://localhost:8001/api/products/new', {
+        axios.post('http://localhost:8000/api/products/new', {
             title: product.title,
             price: product.price,
             description: product.description
@@ -31,7 +31,7 @@ const ProductForm = props => {
     }, [])
 
     const getAllProducts = () => {
-        axios.get('http://localhost:8001/api/products/')
+        axios.get('http://localhost:8000/api/products/')
             .then(res => {
                 setProducts(res.data.allProducts)
                 setReceived(true)

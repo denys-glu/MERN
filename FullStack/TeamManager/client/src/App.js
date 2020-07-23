@@ -8,9 +8,7 @@ import ListOfPlayers from './components/Players/ListOfPlayers';
 import AddPlayer from './components/Players/AddPlayer';
 
 function App() {
-    useEffect(() => {
 
-    }, [])
     return (
         <div className="App">
             <Navigation />
@@ -21,7 +19,6 @@ function App() {
                     <AddPlayer path="/players/addplayer" />
                 </PlayersDashboard>
                 <GamesDashboard path="/status/games/1">
-
                 </GamesDashboard>
             </Router>
         </div>

@@ -12,7 +12,7 @@ const ProductDetail = ({ location }) => {
     const [received, setReceived] = useState(false);
 
     const deleteProduct = () => {
-        axios.delete(`http://localhost:8001/api/products/delete/${id}`, { id })
+        axios.delete(`http://localhost:8000/api/products/delete/${id}`, { id })
             .then(res => {
                 console.log("deleteProduct -> res", res)
                 navigate("/")
@@ -23,7 +23,7 @@ const ProductDetail = ({ location }) => {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:8001/api/products/${id}`, { id })
+        axios.get(`http://localhost:8000/api/products/${id}`, { id })
             .then(res => {
                 console.log("getOne -> res", res)
                 setTitle(res.data.product.title)

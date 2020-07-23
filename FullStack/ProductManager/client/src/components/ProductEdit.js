@@ -11,7 +11,7 @@ const ProductEdit = ({ location }) => {
     const [received, setReceived] = useState(false);
 
     const editProduct = (e, product) => {
-        axios.put(`http://localhost:8001/api/products/update/${id}`, {
+        axios.put(`http://localhost:8000/api/products/update/${id}`, {
             title: product.title,
             price: product.price,
             description: product.description
@@ -30,7 +30,7 @@ const ProductEdit = ({ location }) => {
     }, [])
 
     function getProduct() {
-        axios.get(`http://localhost:8001/api/products/${id}`, { id })
+        axios.get(`http://localhost:8000/api/products/${id}`, { id })
             .then(res => {
                 console.log("getOne -> res", res)
                 setTitle(res.data.product.title)

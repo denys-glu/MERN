@@ -6,7 +6,7 @@ import DeleteButton from './DeleteButton';
 const ProductsAll = ({ products, updateProducts }) => {
 
     const deleteProduct = product => {
-        axios.delete(`http://localhost:8001/api/products/delete/${product._id}`,{
+        axios.delete(`http://localhost:8000/api/products/delete/${product._id}`,{
             id: product._id
                 })
             .then(res => {
